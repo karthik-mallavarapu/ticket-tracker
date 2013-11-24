@@ -3,11 +3,11 @@ Given(/^I am on the homepage$/) do
 end
 
 When(/^I follow "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+	click_on(arg1)
 end
 
 When(/^I fill in "(.*?)" with "(.*?)"$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+fill_in(arg2, with: arg1)
 end
 
 When(/^I press "(.*?)"$/) do |arg1|
