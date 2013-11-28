@@ -9,8 +9,13 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(project_params)
-		@project.save
-		redirect_to @project, :flash => { :success => "Project has been created."}
+		if @project.save
+			redirect_to @project, :flash => { :success => "Project has been created."}
+		else
+			flash[:alert] = "Project has not been created."
+			render action: "new"
+		end
+
 	end
 
 	def show
@@ -18,6 +23,7 @@ class ProjectsController < ApplicationController
 	end
 
 	private
+
 # With rails 4, every attribute modification must be explicitly permitted.
   def project_params
     params.require(:project).permit(:name)
