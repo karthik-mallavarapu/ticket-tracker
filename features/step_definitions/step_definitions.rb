@@ -15,5 +15,5 @@ When(/^I press "(.*?)"$/) do |arg1|
 end
 
 Then(/^I should see "(.*?)"$/) do |arg1|
-	has_content?(arg1)
+	raise "Did not find #{arg1}" unless has_content?(arg1)
 end
