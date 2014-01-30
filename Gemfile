@@ -41,6 +41,7 @@ group :test do
   gem 'cucumber-rails'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'factory_girl'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

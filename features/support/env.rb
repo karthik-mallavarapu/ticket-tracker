@@ -25,6 +25,7 @@ require 'cucumber/rails'
 #
 # 2) Set the value below to true. Beware that doing this globally is not
 # recommended as it will mask a lot of errors for you!
+World(FactoryGirl::Syntax::Methods)
 #
 ActionController::Base.allow_rescue = false
 
