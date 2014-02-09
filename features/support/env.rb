@@ -5,6 +5,7 @@
 # files.
 
 require 'cucumber/rails'
+require "selenium-webdriver"
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -31,6 +32,8 @@ ActionController::Base.allow_rescue = false
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
+#Capybara.default_driver = :selenium
+
 begin
   DatabaseCleaner.strategy = :transaction
 rescue NameError

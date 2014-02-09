@@ -7,11 +7,11 @@ When /^I follow "([^"]*)"$/ do |arg1|
 end
 
 When /^I fill in "([^"]*)" with "([^"]*)"$/ do |arg1, arg2|
-	fill_in(arg1, with: arg2)
+	fill_in(arg1, with: arg2, match: :prefer_exact)
 end
 
 When /^I press "([^"]*)"$/ do |arg1|
-	click_on arg1
+	click_button arg1
 end
 
 Then /^I should see "([^"]*)"$/ do |arg1|
@@ -40,4 +40,19 @@ Then /^I should see "([^"]*)" within "([^"]*)"$/ do |arg1, arg2|
 	within arg2 do
 		raise "Did not find #{arg1}" unless has_content? arg1
 	end
+end
+
+Given /^there are the following users:$/ do |table|
+	table.hashes.each do |attributes|
+		user = User.create!(email: attributes['email'], password: attributes['password'])
+		if attributes['confirmed'] == "true"
+			user.confirm!
+		end	
+	end
+end
+
+When /^I sign in with email "([^"]*)" and password "([^"]*)"$/ do |arg1, arg2|
+	fill_in 'Email', with: arg1
+	fill_in 'Password', with: arg2
+	click_button 'Sign in'
 end
