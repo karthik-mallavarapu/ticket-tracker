@@ -45,6 +45,7 @@ end
 Given /^there are the following users:$/ do |table|
 	table.hashes.each do |attributes|
 		user = User.create!(email: attributes['email'], password: attributes['password'])
+		user.update_attribute("admin", attributes['admin'] == 'true')
 		if attributes['confirmed'] == "true"
 			user.confirm!
 		end	
@@ -55,4 +56,20 @@ When /^I sign in with email "([^"]*)" and password "([^"]*)"$/ do |arg1, arg2|
 	fill_in 'Email', with: arg1
 	fill_in 'Password', with: arg2
 	click_button 'Sign in'
+end
+
+Given /^"([^"]*)" has created a ticket for this project:$/ do |email, table|
+	user = User.find_by_email(email)
+	table.hashes.each do |attributes|
+		attributes.merge!(user: user)
+		@project.tickets.create!(attributes)
+	end
+end
+
+Then /^I should not see the "([^"]*)" link$/ do |arg1|
+	raise "Should not have found the link #{arg1}" unless page.has_link?(arg1) == false
+end
+
+Then /^I should see the "([^"]*)" link$/ do |arg1|
+	raise "Did not find the link #{arg1}" unless page.has_link?(arg1)	
 end

@@ -3,8 +3,14 @@ Feature: Deleting tickets
           As a user
           I want to press a button and make them disappear
           Background:
-            Given there is a project called "TextMate 2"
-            And that project has a ticket:
+            Given I am on the homepage
+            And there are the following users:
+              | email             | password | confirmed |
+              | user@tickettracker.com | password | true |
+            When I follow "Sign in"  
+            And I sign in with email "user@tickettracker.com" and password "password"
+            And there is a project called "TextMate 2"
+            And "user@tickettracker.com" has created a ticket for this project:
               | title           | description                   |
               |  Make it shiny! | Gradients! Starbursts! Oh my! |
             Given I am on the homepage

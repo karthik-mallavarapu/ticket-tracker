@@ -4,6 +4,12 @@ Feature: Editing Projects
   I want to be able to do that through an interface
   
   Background:
+    Given there are the following users:
+        | email              | password | admin | confirmed |
+        | admin@tickettracker.com | password | true  | true |
+    And I am on the homepage
+    When I follow "Sign in"  
+    And I sign in with email "admin@tickettracker.com" and password "password"
     Given there is a project called "TextMate 2"
     And I am on the homepage
     When I follow "TextMate 2"

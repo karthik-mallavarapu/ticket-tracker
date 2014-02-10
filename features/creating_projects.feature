@@ -4,8 +4,13 @@ Feature: Creating projects
     I want to create them easily
     
     Background:
-    	Given I am on the homepage
-    	When I follow "New Project"
+        Given there are the following users:
+        | email              | password | admin | confirmed |
+        | admin@tickettracker.com | password | true  | true |
+    	And I am on the homepage
+        When I follow "Sign in"  
+        And I sign in with email "admin@tickettracker.com" and password "password"
+        When I follow "New Project"
     
     Scenario: Creating a project
     	And I fill in "Name" with "TextMate 2"

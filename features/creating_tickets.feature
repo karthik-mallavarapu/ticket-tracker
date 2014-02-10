@@ -5,9 +5,17 @@ I want to be able to select a project and do that
 
 Background:
   Given there is a project called "Internet Explorer"
+  And there are the following users:
+    | email             | password | confirmed |
+    | user@tickettracker.com | password | true |
   And I am on the homepage
   When I follow "Internet Explorer"
   And I follow "New Ticket"
+  Then I should see "You need to sign in or sign up before continuing."
+  When I fill in "Email" with "user@tickettracker.com"
+  And I fill in "Password" with "password"
+  And I press "Sign in"
+  Then I should see "New Ticket"
 
 Scenario: Creating a ticket
   When I fill in "Title" with "Non-standards compliance"
