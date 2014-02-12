@@ -1,7 +1,17 @@
-<div id='ticket'>
-  <h2><%= @ticket.title %></h2>
-  <br><small>Created by <%= @ticket.user.email %></small>
-  <%= simple_format(@ticket.description) %>
-  <%= link_to "Edit Ticket", edit_project_ticket_path(@project, @ticket) %>
-  <%= link_to "Delete Ticket", [@project, @ticket], method: :delete, data: {confirm: "Are you sure you want to delete this ticket?"} %>
-</div>
+<h2 class="subheader"><%= @ticket.title %></h2>
+<div class="row">
+	<blockquote>
+		<p>Description: <%= @ticket.description %></p>
+		<p>State: <%= @ticket.state%></p>
+		<p>Priority: <%= @ticket.priority%></p>
+		<small>Created by <%= @ticket.user.email %></small>
+	</blockquote>
+	<ul class="inline-list">
+		<li>
+			<%= link_to "Edit Ticket", edit_project_ticket_path(@project, @ticket) %>
+		</li> 
+		<li>
+			<%= link_to "Delete Ticket", [@project, @ticket], method: :delete, data: {confirm: "Are you sure you want to delete this ticket?"} %>
+		</li>
+	</ul>
+  </div>

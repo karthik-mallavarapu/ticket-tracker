@@ -22,7 +22,7 @@ Feature: Editing tickets
             When I fill in "Title" with "Make it really shiny!"
             And I press "Update Ticket"
             Then I should see "Ticket has been updated."
-            And I should see "Make it really shiny!" within "#ticket h2"
+            And I should see "Make it really shiny!" within "h2.subheader"
             But I should not see "Make it shiny!"
   
   Scenario: Updating a ticket with invalid information

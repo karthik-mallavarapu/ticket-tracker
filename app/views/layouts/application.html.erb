@@ -5,6 +5,7 @@
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+
   <head>
   	<meta charset="utf-8" />
 
@@ -48,20 +49,27 @@
           </li>
         <% end %>
 	    </ul>
-
-	    <!-- Left Nav Section
+ 
+      <!-- Right Nav Section -->
 	    <ul class="left">
-	      <li><a href="#">Projects</a></li>
+        <%= admins_only do %>
+          <li class="active">
+            <%= link_to "Admin", admin_root_path %>
+          </li>
+          <%end%>
 	    </ul>
-      -->
+    
 	  </section>
 	</nav>
- 	<% flash.each do |key, value| %>
-        <div class='flash' id='<%= key %>'>
-            <%= value %>
-        </div>
-    <% end %>
-
+ 	<%# Rails flash messages styled for Zurb Foundation %>
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <div data-alert class="alert-box round <%= name == :notice ? "success" : "alert" %>">
+      <%= content_tag :div, msg %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
+<% end %>
 <%= yield %>
 
     <%= javascript_include_tag "application" %>

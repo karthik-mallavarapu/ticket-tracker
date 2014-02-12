@@ -1,0 +1,14 @@
+<h2 class="subheader">Users</h2><br>
+<div class="row">
+	<ul class="circle">
+		<% @users.each do |user| %>
+			<li> <%= link_to user.to_s, [:admin, user] %> </li>
+		<% end %>
+	</ul>
+	<ul class="inline-list">
+		<li>
+			<%= link_to "New User", new_admin_user_path %>
+		</li>
+	</ul>
+</div>
+

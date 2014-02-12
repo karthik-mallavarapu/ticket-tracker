@@ -1,10 +1,23 @@
 
- <h2>Projects</h2>
- <ul>
- 	<% @projects.each do |project| %>
- 	<li><%= link_to project.name, project %> </li>
- 	<% end %>
- </ul>
- <%= admins_only do %>
- 	<%= link_to "New Project", new_project_path %>
- <% end %>	
+ <h2 class="subheader">Projects</h2>
+ <div class="row">
+ 	<ul class="circle">
+	 	<% @projects.each do |project| %>
+	 		<li> 
+		 		<h3><small><%=link_to project.name, project%></small></h3>
+		 		<blockquote>
+		 			Description: <%= project.description %><br>	
+		 		</blockquote>
+		 	</li> 		
+		<% end %>
+	</ul>
+ </div>
+ <div class="row">
+ 	<ul class="inline-list">
+ 		<li>
+			<%= admins_only do %>
+				<%= link_to "New Project", new_project_path %>
+			<% end %>
+		</li>	
+ 	</ul>
+ </div>

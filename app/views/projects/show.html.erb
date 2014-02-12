@@ -1,14 +1,46 @@
-<h2><%= @project.name %></h2>
-<%= admins_only do %>
-	<%= link_to "Edit Project", edit_project_path(@project) %>
-	<%= link_to "Delete Project", @project, method: :delete, data: {confirm: "Are you sure you want to delete this project?"} %>
-<% end %>	
-<%= link_to "New Ticket", new_project_ticket_path(@project) %>
-<ul id='tickets'>
-	<% @project.tickets.each do |ticket| %>
-		<li>
-			#<%= ticket.id %> - <%= link_to ticket.title, [@project,ticket] %>
-		</li>	
-	<% end %>	
-</ul>
+<h2 class="subheader"><%= @project.name %></h2>
+<div class="row">
+	<blockquote>Description: <%= @project.description %></blockquote>
+</div>
+<div class="row">
+	<h3 class="subheader">Tickets</h3><br>
 
+	<div class="large-12 columns">
+		<table>
+			<thead>
+				<th width="200">Title</th>
+			    <th>Description</th>
+			    <th width="150">Priority</th>
+			    <th width="150">State</th>
+			</thead>
+			<tbody>
+				<% @project.tickets.each do |ticket| %>
+				<tr>
+					<td><%= link_to ticket.title, [@project, ticket] %></td>
+					<td><%= ticket.description %></td>
+					<td><%= ticket.priority %></td>
+					<td><%= ticket.state %></td>
+				</tr>
+				<% end %>	
+			</tbody>
+		</table>
+
+
+	<ul class="inline-list">	
+		<li> 
+			<%= link_to "New Ticket", new_project_ticket_path(@project) %>
+		</li>	
+	</ul>
+	</div>	
+	<ul class="inline-list">
+		<%= admins_only do %>
+			<li>
+				<%= link_to "Edit Project", edit_project_path(@project) %>
+			</li>
+			<li>
+				<%= link_to "Delete Project", @project, method: :delete, data: {confirm: "Are you sure you want to delete this project?"} %>
+			</li>	
+			
+		<% end %>
+	</ul>
+</div>

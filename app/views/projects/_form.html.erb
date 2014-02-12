@@ -3,18 +3,28 @@
 		<%= f.error_messages %>
 	</div>
 	<div class="row">
-		<div class="large-4">
-		  	<%= f.input :name %>
-		</div> 
-	</div>
-	<div class="row">
-		<div class="large-4">
-		  	<%= f.input :description %>
-		</div> 
-	</div>
-  <div class="row">
-	  <div class="large-6 columns"> 
-	  	<%= f.submit class: "button small" %>
-	  </div>
-  </div>
+		<div class="large-6 columns">
+			<div class="row">
+				<div class="large-3 columns">
+			    	<%= f.label :name,:required => true, class: "right inline" %>
+			    </div>
+				<div class="large-9 columns">
+				  	<%= f.input :name, label: false %>
+				</div> 
+			</div>
+			<div class="row">
+				<div class="large-3 columns">
+			    	<%= f.label :description,:required => false, class: "right inline" %>
+			    </div>
+				<div class="large-9 columns">
+				  	<%= f.input :description, label: false %>
+				</div> 
+			</div>			
+			<div class="row">
+				 <div class="large-9 large-offset-3 columns"> 
+				 	<%= f.submit class: "button small" %>
+				 </div>
+			</div>
+	  	</div>
+  	</div>
 <% end %>

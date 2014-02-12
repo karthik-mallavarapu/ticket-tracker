@@ -73,3 +73,15 @@ end
 Then /^I should see the "([^"]*)" link$/ do |arg1|
 	raise "Did not find the link #{arg1}" unless page.has_link?(arg1)	
 end
+
+Given /^I am signed in as "([^"]*)"$/ do |arg1|
+	steps (%Q{
+		Given I am on the homepage
+		When I follow "Sign in"
+		When I sign in with email "#{arg1}" and password "password"	
+	})
+end
+
+When /^I check "([^"]*)"$/ do |arg1|
+	check arg1
+end

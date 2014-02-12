@@ -58,6 +58,6 @@ class ProjectsController < ApplicationController
 
 # With rails 4, every attribute modification must be explicitly permitted.
   def project_params
-    params.require(:project).permit(:name)
+    params.require(:project).permit(:name, :description)
   end
 end
