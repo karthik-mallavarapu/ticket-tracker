@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
 
 	def destroy
 		@project = Project.find(params[:id])
-		@project.delete
+		@project.destroy
 		redirect_to projects_path 
 		flash[:notice] = "Project has been deleted."
 	end
