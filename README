@@ -1,0 +1,36 @@
+README: TicketTracker
+
+Description: Tickettracker is a rails application for tracking tickets in a software project. The application consists of projects each containing tickets belonging to that project. The application also implements basic authentication and access control. A user in the application can be a normal user or an administrator. An administrator has certain additional privileges like the ability to create/destroy a project, create/update/delete users etc. Tickets can be created by both admin and the normal users.
+
+Requirements:
+rvm
+ruby-2.0.0-p247
+postgresql 
+
+Instructions:
+Update the config/database.yml file with relevant details. Run the following the DB setup. 
+
+bundle exec rake db:create
+bundle exec rake db:schema:load
+bundle exec rake db:seed
+
+Database Tables:
+
+Users:
+  email
+  password
+  admin (a boolean field for setting the admin flag)
+
+Projects:
+  id
+  name
+  description
+  
+Tickets:
+  id
+  title
+  description
+  priority
+  state
+  project_id (foreign key)
+  user_id (foreign key)
