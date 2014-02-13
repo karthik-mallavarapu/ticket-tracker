@@ -19,6 +19,7 @@
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -70,9 +71,6 @@
     </div>
   <% end %>
 <% end %>
-<%= yield %>
-
-    <%= javascript_include_tag "application" %>
-    
+<%= yield %>    
   </body>
 </html>
