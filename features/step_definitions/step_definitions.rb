@@ -62,6 +62,7 @@ Given /^"([^"]*)" has created a ticket for this project:$/ do |email, table|
 	user = User.find_by_email(email)
 	table.hashes.each do |attributes|
 		attributes.merge!(user: user)
+		attributes[:priority] = 'low'
 		@project.tickets.create!(attributes)
 	end
 end
