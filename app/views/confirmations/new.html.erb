@@ -1,0 +1,42 @@
+<h2 class="subheader">Sign up</h2>
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+<div class="row collapse">
+  	<div class="large-6 columns">
+
+ 		<div class="row collapse">
+		  	<div class="large-3 columns">
+			    <%= f.label :email,:required => true, class: "right inline" %>
+			</div>
+			    		
+			<div class="large-9 columns">
+				<%= f.input :email, :autofocus => true, label: false %><br>
+			</div>
+	 	</div>
+	  	<div class="row collapse">
+	  		<div class="large-3 columns">
+			    <%= f.label :password,:required => true, class: "right inline" %>
+			</div>
+		 	<div class="large-9 columns">
+		  		<%= f.input :password, :required => true, label: false %>
+		 	</div>
+	  	</div>
+		<div class="row collapse">
+		  	<div class="large-3 columns">
+			    <%= f.label :password_confirmation,:required => true, class: "right inline" %>
+			</div>
+		 	<div class="large-9 columns">
+		  		<%= f.input :password_confirmation, :required => true, label: false %>
+		 	</div>
+		</div>
+	  	<div class="row">
+			<div class="large-9 large-offset-3 columns">
+				<%= f.button :submit, "Sign up", class: "small"  %>
+			</div>
+		</div>
+	</div>
+</div>		
+<% end %>
+
+<!--<%= render "devise/shared/links" %> -->
