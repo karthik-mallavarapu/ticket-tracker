@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ProjectsController do
 	it "displays an error and redirects to home page if project id is not found" do
+		sign_in(:user, user)
 		get :show, id: "dummy"
 		response.should redirect_to projects_path
 		flash[:alert].should eql "The project you were looking for could not be found."
@@ -25,4 +26,12 @@ describe ProjectsController do
 	  		end
 		end
 	end
+
+	it "cannot access the show action" do
+		sign_in(:user, user)
+		get :show, id: project.id
+		response.should redirect_to(projects_path)
+		flash[:alert].should eql "The project you were looking for could not be found."
+	end
+
 end

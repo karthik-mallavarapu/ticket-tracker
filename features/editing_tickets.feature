@@ -7,13 +7,12 @@ Feature: Editing tickets
             And there are the following users:
               | email             | password | confirmed |
               | user@tickettracker.com | password | true |
-            When I follow "Sign in"  
-            And I sign in with email "user@tickettracker.com" and password "password"
             And there is a project called "TextMate 2"
+            And "user@tickettracker.com" can view the "TextMate 2" project
             And "user@tickettracker.com" has created a ticket for this project:
               | title           | description                   |
               |  Make it shiny! | Gradients! Starbursts! Oh my! |
-            Given I am on the homepage
+            And I am signed in as "user@tickettracker.com"
             When I follow "TextMate 2"
             And I follow "Make it shiny!"
            When I follow "Edit Ticket"

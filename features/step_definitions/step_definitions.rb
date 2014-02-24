@@ -86,3 +86,9 @@ end
 When /^I check "([^"]*)"$/ do |arg1|
 	check arg1
 end
+
+Given /^"([^"]*)" can view the "([^"]*)" project$/ do |arg1, arg2|
+	user = User.find_by_email(arg1)
+	project = Project.find_by_name(arg2)
+	Permission.create!(user_id: user.id, subject: project, action: "view")
+end
