@@ -7,9 +7,7 @@ Feature: Creating projects
         Given there are the following users:
         | email              | password | admin | confirmed |
         | admin@tickettracker.com | password | true  | true |
-    	And I am on the homepage
-        When I follow "Sign in"  
-        And I sign in with email "admin@tickettracker.com" and password "password"
+    	And I am signed in as "admin@tickettracker.com"
         When I follow "New Project"
     
     Scenario: Creating a project

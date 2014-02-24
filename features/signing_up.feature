@@ -3,8 +3,7 @@ Feature: Signing up
         As a user
         I want to be able to sign up
         Scenario: Signing up
-          Given I am on the homepage
-          When I follow "Sign up"
+          Given I am on the "Sign up" page
           And I fill in "Email" with "user@tickettracker.com"
           And I fill in "Password" with "password"
           And I fill in "Password confirmation" with "password"

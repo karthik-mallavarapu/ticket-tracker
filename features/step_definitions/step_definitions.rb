@@ -1,3 +1,9 @@
+
+pages = {
+	'Sign in' => '/users/sign_in',
+	'Sign up' => '/users/sign_up'
+}
+
 Given /^I am on the homepage$/ do
 	visit('/')
 end
@@ -76,9 +82,8 @@ Then /^I should see the "([^"]*)" link$/ do |arg1|
 end
 
 Given /^I am signed in as "([^"]*)"$/ do |arg1|
+	visit '/users/sign_in'
 	steps (%Q{
-		Given I am on the homepage
-		When I follow "Sign in"
 		When I sign in with email "#{arg1}" and password "password"	
 	})
 end
@@ -91,4 +96,8 @@ Given /^"([^"]*)" can view the "([^"]*)" project$/ do |arg1, arg2|
 	user = User.find_by_email(arg1)
 	project = Project.find_by_name(arg2)
 	Permission.create!(user_id: user.id, subject: project, action: "view")
+end
+
+Given /^I am on the "([^"]*)" page$/ do |arg1|
+	visit pages[arg1]
 end

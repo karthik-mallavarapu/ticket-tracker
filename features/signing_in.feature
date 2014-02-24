@@ -16,7 +16,6 @@
       Given there are the following users:
         | email             | password | confirmed |
         | user@tickettracker.com | password | true |
-      And I am on the homepage
-      When I follow "Sign in"
+      And I am on the "Sign in" page
       When I sign in with email "user@tickettracker.com" and password "password"
       Then I should see "Signed in successfully."

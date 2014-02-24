@@ -3,10 +3,10 @@ class ProjectsController < ApplicationController
 	# Before the mentioned controller methods are called, find_project is called to check if project with id exists
 	before_filter :authorize_admin!, except: [:index, :show]
 	before_filter :find_project, only: [:show, :edit, :update, :destroy]
-	before_filter :authenticate_user!, only: [:show]
+	before_filter :authenticate_user!, only: [:show, :index]
 
 	def index
-		@projects = Project.all
+		@projects = (Project.for(current_user)).all
 	end
 
 	def new
