@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
     has_many :permissions
+    
 	def to_s
 		if admin?
 			"#{email} (Admin)"

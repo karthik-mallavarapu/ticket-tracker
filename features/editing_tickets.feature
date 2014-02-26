@@ -9,6 +9,7 @@ Feature: Editing tickets
               | user@tickettracker.com | password | true |
             And there is a project called "TextMate 2"
             And "user@tickettracker.com" can view the "TextMate 2" project
+            And "user@tickettracker.com" can "edit tickets" in the "TextMate 2" project
             And "user@tickettracker.com" has created a ticket for this project:
               | title           | description                   |
               |  Make it shiny! | Gradients! Starbursts! Oh my! |

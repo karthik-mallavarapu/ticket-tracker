@@ -47,6 +47,7 @@ class ProjectsController < ApplicationController
 
 	private
 
+
 	def find_project
 		@project = Project.for(current_user).find(params[:id])
 		rescue ActiveRecord::RecordNotFound

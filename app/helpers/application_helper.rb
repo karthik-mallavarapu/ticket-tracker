@@ -3,4 +3,10 @@ module ApplicationHelper
 		block.call if current_user.try(:admin)
 		nil
 	end
+
+	def authorized?(permission, subject, &block)
+		block.call if can?(permission, subject) || current_user.try(:admin)
+		nil
+	end
+
 end

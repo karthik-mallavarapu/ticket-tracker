@@ -25,13 +25,14 @@
 			</tbody>
 		</table>
 
-
-	<ul class="inline-list">	
-		<li> 
-			<%= link_to "New Ticket", new_project_ticket_path(@project) %>
-		</li>	
-	</ul>
-	</div>	
+	<%= authorized?("create tickets".to_sym, @project) do %>
+		<ul class="inline-list">	
+			<li> 
+				<%= link_to "New Ticket", new_project_ticket_path(@project) %>
+			</li>	
+		</ul>
+		</div>
+	<% end %>	
 	<ul class="inline-list">
 		<%= admins_only do %>
 			<li>

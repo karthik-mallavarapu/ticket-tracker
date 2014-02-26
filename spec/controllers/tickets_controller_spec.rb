@@ -23,6 +23,16 @@ describe TicketsController do
             flash[:alert].should eql "You cannot create tickets on this project."
         end
 
+        def cannot_edit_tickets
+            response.should redirect_to project
+            flash[:alert].should eql "You cannot edit tickets on this project."
+        end
+        
+        def cannot_destroy_tickets
+            response.should redirect_to project
+            flash[:alert].should eql "You cannot delete tickets on this project."
+        end
+
         it "cannot invoke the new action" do
             get :new, project_id: project.id
             cannot_create_tickets
@@ -31,6 +41,21 @@ describe TicketsController do
         it "cannot invoke the create action" do 
             post :create, project_id: project.id
             cannot_create_tickets
+        end
+
+        it "cannot invoke the edit action" do
+            get :edit, {project_id: project.id, id: ticket.id}
+            cannot_edit_tickets
+        end
+
+        it "cannot invoke the update action" do
+            put :update, {project_id: project.id, id:ticket.id, ticket: {}} 
+            cannot_edit_tickets
+        end
+
+        it "cannot invoke the destroy action" do
+            delete :destroy, {project_id: project.id, id:ticket.id}
+            cannot_destroy_tickets
         end
     end
 
