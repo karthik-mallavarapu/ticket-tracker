@@ -2,6 +2,8 @@ class TicketsController < ApplicationController
 	
 	before_filter :find_project
 	before_filter :authenticate_user!, :except => [:index, :show]
+	before_filter :authorize_create!, only: [:new, :create]
+	before_filter :find_ticket, only: [:show, :edit, :update, :destroy]
 	def new
 		@ticket = @project.tickets.build
 	end
@@ -17,15 +19,14 @@ class TicketsController < ApplicationController
 	end
 
 	def show
-		@ticket = @project.tickets.find(params[:id])
+
 	end
 
 	def edit
-		@ticket = @project.tickets.find(params[:id])
+
 	end
 
 	def update
-		@ticket = @project.tickets.find(params[:id])
 		if @ticket.update_attributes(ticket_params)
 			flash[:notice] = "Ticket has been updated."
 			redirect_to [@project, @ticket]
@@ -36,18 +37,32 @@ class TicketsController < ApplicationController
 	end
 
 	def destroy
-		@project.tickets.find(params[:id]).destroy
+		@ticket.destroy
 		flash[:notice] = "Ticket has been deleted."
 		redirect_to @project
 	end
 	
 	private
 
+	def authorize_create!
+		if !current_user.admin? && cannot?("create tickets".to_sym, @project)
+			flash[:alert] = "You cannot create tickets on this project."
+			redirect_to @project
+		end
+	end
+
 	def find_project
 		@project = Project.for(current_user).find(params[:project_id])
 		rescue
 			flash[:alert] = "The project you were looking for could not be found."
 			redirect_to root_path
+	end
+
+	def find_ticket
+		@ticket = @project.tickets.find(params[:id])	
+		rescue
+			flash[:alert] = "The ticket you were looking for could not be found."
+			redirect_to @project	
 	end
 
 	def ticket_params

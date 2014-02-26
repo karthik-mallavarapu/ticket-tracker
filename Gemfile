@@ -49,6 +49,7 @@ group :test do
   gem 'factory_girl'
 end
 gem 'devise'
+gem 'cancan'
 gem 'email_spec'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

@@ -101,3 +101,9 @@ end
 Given /^I am on the "([^"]*)" page$/ do |arg1|
 	visit pages[arg1]
 end
+
+Given /^"([^"]*)" can create tickets in the "([^"]*)" project$/ do |arg1, arg2|
+	user = User.find_by_email(arg1)
+	project = Project.find_by_name(arg2)
+	Permission.create!(user_id: user.id, subject: project, action: "create tickets")
+end
