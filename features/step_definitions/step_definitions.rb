@@ -4,6 +4,19 @@ pages = {
 	'Sign up' => '/users/sign_up'
 }
 
+
+
+def project_permission_id(perm, proj)
+	permissions_hash = {
+		'View Project' => 'view',
+		'Create Tickets' => 'create_tickets',
+		'Edit Tickets' => 'edit_tickets',
+		'Delete Tickets' => 'delete_tickets'
+	}
+	proj_id = Project.find_by_name(proj).id
+	return "permissions_#{proj_id}_#{permissions_hash[perm]}"
+end
+
 Given /^I am on the homepage$/ do
 	visit('/')
 end
@@ -108,3 +121,6 @@ Given /^"([^"]*)" can "([^"]*)" in the "([^"]*)" project$/ do |arg1, arg2, arg3|
 	Permission.create!(user_id: user.id, subject: project, action: arg2)
 end
 
+When /^I check "([^"]*)" for "([^"]*)"$/ do |arg1, arg2|
+	find(:id, project_permission_id(arg1, arg2)).set(true)
+end

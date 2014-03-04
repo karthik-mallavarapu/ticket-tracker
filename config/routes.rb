@@ -4,8 +4,12 @@ TicketTracker::Application.routes.draw do
   root :to => "projects#index"
   namespace :admin do
   	root :to => "base#index"
-  	resources :users	
+  	resources :users do
+      resources :permissions	
+    end
   end
+  put '/admin/users/:user_id/permissions', to: "admin/permissions#update", as: 'update_user_permissions'
+
   resources :projects do
   	resources :tickets
   end
